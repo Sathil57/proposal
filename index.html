@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💌 A Special Message for You</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- 🌌 NEXT-GEN LIQUID AURA BACKGROUND -->
+    <div class="aura-container">
+        <div class="aura-blob aura-1" id="bg-layer-1"></div>
+        <div class="aura-blob aura-2" id="bg-layer-2"></div>
+        <div class="aura-blob aura-3" id="bg-layer-3"></div>
+        <div class="aura-blob aura-4"></div>
+
+        <!-- Optional subtlety: A very faint glass grain overlay -->
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- ✨ MAGIC CURSOR CONTAINER -->
+    <div id="magic-cursor-container"></div>
+
+    <!-- ═══ SCREEN 0: BUILDER UI (VISIBLE BY DEFAULT) ═══ -->
+    <section id="s-builder" class="screen fade-transition active">
+        <div class="center-col z-top">
+            <div class="glass-container builder-box">
+                <h2 class="section-title text-gradient" style="font-size: 2.8rem; margin-bottom: 5px;">Proposal
+                    Generator <span style="font-size: 1.5rem">✨</span></h2>
+                <p class="prop-sub" style="font-size: 1.05rem; margin-bottom: 30px; letter-spacing: 0.5px;">No coding
+                    required. Generate a magic link to send her.</p>
+
+                <div class="input-group">
+                    <label>Her Name</label>
+                    <input type="text" id="b-name" placeholder="E.g. Ananya" />
+                </div>
+
+                <div class="input-group">
+                    <label>Your Love Letter</label>
+                    <textarea id="b-letter" rows="4" placeholder="Every time I see you..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>Photo URLs (Optional - Direct image links)</label>
+                    <input type="text" id="b-p1" placeholder="Photo 1 URL" />
+                    <input type="text" id="b-p2" placeholder="Photo 2 URL" />
+                    <input type="text" id="b-p3" placeholder="Photo 3 URL" />
+                </div>
+
+                <div class="input-group">
+                    <label>Secret Notification Key (Web3Forms)</label>
+                    <input type="text" id="b-key" placeholder="Paste Access Key to get emailed when she says Yes!" />
+                    <p class="hint-text" style="margin-top:8px; text-transform:none; font-size:0.8rem;">Get a free key
+                        from web3forms.com. Leave empty if you don't want an email.</p>
+                </div>
+
+                <button id="btn-generate" class="btn-primary glow-button"
+                    style="width: 100%; margin-top: 15px;">Generate Magic Link 🪄</button>
+
+                <!-- Result Box -->
+                <div id="result-box" class="result-box" style="display:none; margin-top: 25px;">
+                    <p style="font-size: 0.95rem; margin-bottom: 8px; font-weight: 600;">Your custom link is ready!</p>
+                    <textarea id="b-link" readonly rows="3"
+                        style="width: 100%; padding: 12px; font-size: 0.85rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: #fff; margin-bottom: 10px; border-radius: 8px; font-family: monospace;"></textarea>
+                    <button id="btn-copy" class="btn-glass outline" style="width: 100%;">Copy Link to Clipboard
+                        📋</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 1: LANDING ═══ -->
+    <section id="s-landing" class="screen fade-transition">
+        <div class="center-col">
+            <p class="subtitle text-gradient" style="margin-bottom: 40px;">Someone has a very special message for you…
+            </p>
+            <div id="env-wrap" class="env-wrap">
+                <div id="env" class="env">
+                    <div class="env-flap"></div>
+                    <div class="env-body"><span class="env-icon">💌</span></div>
+                </div>
+                <p class="hint-text pulse-anim" style="margin-top: 50px;">✦ Click to open ✦</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 1.5: THE GAME ═══ -->
+    <section id="s-game" class="screen fade-transition">
+        <div class="center-col z-top">
+            <h2 class="section-title text-gradient" style="font-size: 3rem;">Light Up The Sky ✨</h2>
+            <p class="prop-sub glass-bg-text">Tap the 5 brightest stars to reveal the shape...</p>
+
+            <div id="game-board">
+                <svg id="game-svg"></svg>
+                <div class="game-star" style="top: 25%; left: 20%;"></div>
+                <div class="game-star" style="top: 25%; left: 80%;"></div>
+                <div class="game-star" style="top: 60%; left: 95%;"></div>
+                <div class="game-star" style="top: 90%; left: 50%;"></div>
+                <div class="game-star" style="top: 60%; left: 5%;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 2: MEMORY LANE ═══ -->
+    <section id="s-memory" class="screen fade-transition">
+        <div class="center-col">
+            <h2 class="section-title text-gradient">A walk down memory lane...</h2>
+
+            <div class="polaroid-gallery">
+                <!-- Images injected by JS -->
+                <div class="polaroid p-1">
+                    <div class="photo">
+                        <img id="img-p1" src="" alt="Memory 1" />
+                    </div>
+                    <p class="caption">The first time we met ✨</p>
+                </div>
+                <div class="polaroid p-2">
+                    <div class="photo">
+                        <img id="img-p2" src="" alt="Memory 2" />
+                    </div>
+                    <p class="caption">Endless laughs & coffee ☕</p>
+                </div>
+                <div class="polaroid p-3">
+                    <div class="photo">
+                        <img id="img-p3" src="" alt="Memory 3" />
+                    </div>
+                    <p class="caption">Every moment is magic 💖</p>
+                </div>
+            </div>
+
+            <button id="btn-to-letter" class="btn-primary glow-button" style="margin-top: 20px;">Read My Letter
+                ✦</button>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 3: LETTER ═══ -->
+    <section id="s-letter" class="screen fade-transition">
+        <div class="letter-wrap">
+            <div class="glass-card modern-shadow">
+                <div class="card-glow"></div>
+                <div class="letter-content">
+                    <div class="letter-deco text-gradient">✥ ✥ ✥</div>
+                    <p class="letter-dear">My Dearest,</p>
+                    <p id="letter-body" class="letter-body"></p>
+                    <p class="letter-close">With all my heart,</p>
+                    <p class="letter-sig text-gradient">— Someone who adores you 💖</p>
+
+                    <div class="btn-container" style="margin-top: 40px;">
+                        <button id="btn-next" class="btn-primary" style="display:none">The Big Question →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 4: PROPOSAL ═══ -->
+    <section id="s-proposal" class="screen fade-transition">
+        <div class="center-col z-top">
+            <div class="big-heart cinematic-beat">💖</div>
+            <div class="glass-container proposal-box">
+                <h1 id="prop-q" class="prop-text text-gradient"></h1>
+                <p class="prop-sub glass-bg-text">You make my world brighter every single day.</p>
+                <div class="prop-btns">
+                    <button id="btn-yes" class="btn-primary glow-button">Yes! 💍</button>
+                    <button id="btn-no" class="btn-glass outline">Maybe later…</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SCREEN 5: CELEBRATE ═══ -->
+    <section id="s-celebrate" class="screen fade-transition">
+        <canvas id="confetti"></canvas>
+        <div class="center-col z-top">
+            <div class="celebrate-icon bounce-in">🥂</div>
+            <div class="glass-card celebrate-box">
+                <h1 id="cel-title" class="cel-title text-gradient"></h1>
+                <p class="cel-sub glass-bg-text">This is just the beginning of our beautiful story.</p>
+                <div id="cel-hearts" class="cel-hearts"></div>
+                <p class="cel-sub"
+                    style="opacity:0; animation: fadeUp 1s ease 2s both; font-size: 1rem; color: var(--accent);">
+                    ✨ P.S. A secret little bird just flew off to tell him your answer! ✨
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
